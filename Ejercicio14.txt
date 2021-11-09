@@ -1,0 +1,36 @@
+ //EJERCICIO 14//
+    public void Ejercicio14() {
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.netflix.com/uy/");         // Acceder a Netflix: https://www.netflix.com/uy/
+
+        WebElement Tit1 =driver.findElement(By.tagName("h1")); //Obtener el título del sitio y crear un elemento
+        System.out.println("******Titulo1******");
+        System.out.println("El titulo es:" + Tit1.getText()); // Mostrar los elementos h1
+
+        List<WebElement> Tit2 = driver.findElements(By.tagName("h2"));
+        System.out.println("******Titulos2******");
+        for (WebElement elementoH2: Tit2) {
+            System.out.println("El titulo de H2 es:"+"''"+ elementoH2.getText()+"''");  // Mostrar los elementos h2
+        }
+
+        driver.navigate().refresh();//Refrescar la página
+
+        System.out.println("******Botones******");
+        List<WebElement> botonesnet = driver.findElements(By.tagName("button"));
+        for(WebElement elemBotones:botonesnet){
+            System.out.println("button:"+ elemBotones.getText());//Mostrar el texto de los botones que se encuentran en la página
+        }
+        System.out.println("******Cantidad div******");
+        List<WebElement> divElements = driver.findElements(By.tagName("div"));
+        System.out.println("Cantidad de div: " + divElements.size()); //Mostrar la cantidad de elementos div que contiene el sitio
+
+        System.out.println("*****Lista Links ******");
+        List<WebElement> listaLinks = driver.findElements(By.tagName("a"));
+        System.out.println("La cantidad de links de la pagina son: "+listaLinks.size());
+        for (WebElement elementoLink: listaLinks) {
+            System.out.println("El link es:"+"''"+ elementoLink.getText()+"''"); //Mostrar links
+        }
+        System.out.println("********************");
+
+    }
