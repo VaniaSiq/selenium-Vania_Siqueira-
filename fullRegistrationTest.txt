@@ -1,0 +1,34 @@
+ public void fullRegistrationTest() throws InterruptedException {
+      System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+      WebDriver driver = new ChromeDriver();
+      driver.get("https://www.facebook.com/");                                     //Ir a Facebook https://www.facebook.com/
+      driver.findElement(By.partialLinkText("Create new account")).click();
+      Thread.sleep(2000);
+
+      driver.findElement(By.name("firstname")).sendKeys("Jhon");//se crea un elemento para cada campo que hay que llenar
+      driver.findElement(By.name("lastname")).sendKeys("Smith");
+      driver.findElement(By.name("reg_email__")).sendKeys("555555");
+      driver.findElement(By.name("reg_passwd__")).sendKeys("123456789");
+
+      //Birthday: Jun 26 1980
+      WebElement DiaElegir = driver.findElement(By.id("day"));
+      Select dias = new Select(DiaElegir);
+      dias.selectByValue("20");   //accion de seleccionar una opcion
+
+      WebElement MesElegir = driver.findElement(By.id("month"));
+      Select meses = new Select(MesElegir);
+      meses.selectByVisibleText("Jun"); //accion de seleccionar una opcion
+
+      WebElement AnioElegir = driver.findElement(By.id("year"));
+      Select anio = new Select(AnioElegir);
+      anio.selectByValue("1980");   //accion de seleccionar una opcion
+
+
+      //Gender: Male
+      // F   M   C
+      //0   1   2
+      List<WebElement> ListaGenero = driver.findElements(By.name("sex"));   //Se hace una lista con cada elemento encontrado con el nombre sex
+      System.out.println("Cantida de itens de la lista "+ListaGenero.size());
+      WebElement GeneroCustom = ListaGenero.get(1);                         //Se crea un elemento con la posicion n2 de la lista
+      GeneroCustom.click();
+  }
