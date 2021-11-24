@@ -1,0 +1,30 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+@Test
+public class SpotifyWithCssSelectorTest {
+    public void spotifyByPlaceHolderTest(){
+        System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.google.com");
+        driver.get(" https://www.spotify.com/uy/signup/");   //ingresar a la pagina
+
+        driver.findElement(By.xpath("//input[@placeholder='Introduce tu correo electrónico.']")).sendKeys("alan@gmail.com");  //Carga campos
+        driver.findElement(By.xpath("//input[@placeholder='Vuelve a introducir tu correo electrónico.']")).sendKeys("alan@gmail.com");  //Carga campos
+        driver.findElement(By.xpath("//input[@placeholder='Crea una contraseña.']")).sendKeys("123456");  //Carga campos
+        driver.findElement(By.xpath("//input[@placeholder='Introduce un nombre de perfil.']")).sendKeys("Alna");  //Carga campos
+
+        driver.findElement(By.xpath("//input[@placeholder='DD']")).sendKeys("12");;  //Carga campos
+        WebElement MesElegir = driver.findElement(By.xpath("//select[@id='month']")); //Se crea un elemento con la clase webelement
+        Select meses = new Select(MesElegir); //se crea un objeto con la clase Select (de selenium) con el webelement
+        meses.selectByVisibleText("Noviembre"); //accion de seleccionar una opcion
+        driver.findElement(By.xpath("//input[@placeholder='AAAA']")).sendKeys("2015");;   //Carga campos
+
+        driver.findElement(By.xpath("(//*[contains(text(), 'Hombre')]) [1]")).click();  //Carga campos
+        //Gender: Male
+    }
+}
